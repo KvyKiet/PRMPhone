@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- Header với logo, nút cart và nút log in -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:gravity="center_vertical"
+android:padding="10dp">
+
+<ImageView
+    android:id="@+id/logo"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@drawable/logo" />
+
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="FellPhoneF"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:gravity="center" />
+
+<!-- Nút Cart -->
+<Button
+    android:id="@+id/button_cart"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cart"
+    android:background="@drawable/button_background"
+    android:textColor="#FFFFFF"
+    android:padding="10dp"
+    android:layout_marginEnd="8dp" />
+
+<!-- Nút Log In -->
+<Button
+    android:id="@+id/button_login"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Log In"
+    android:background="@drawable/button_background"
+    android:textColor="#FFFFFF"
+    android:padding="10dp" />
+</LinearLayout>
+
+    <!-- Banner hình ảnh -->
+<ImageView
+android:id="@+id/banner_image"
+android:layout_width="match_parent"
+android:layout_height="150dp"
+android:src="@drawable/banner_image"
+android:scaleType="centerCrop" />
+
+    <!-- Khung danh mục -->
+<androidx.cardview.widget.CardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+app:cardElevation="4dp"
+app:cardBackgroundColor="#FFFFFF"> <!-- Sửa thuộc tính thành app:cardBackgroundColor -->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <!-- Danh mục 1 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category1"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Danh mục 2 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category2"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laptop"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Danh mục 3 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category3"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TV"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Danh mục 4 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category4"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watch"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Danh mục 5 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/category5"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Headphone"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
+</androidx.cardview.widget.CardView>
+
+    <!-- Dòng thông báo "Điện thoại nổi bật" -->
+<TextView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Điện thoại nổi bật"
+android:textSize="16sp"
+android:textStyle="bold"
+android:paddingTop="10dp"
+android:gravity="center" />
+
+    <!-- Danh sách sản phẩm (2 sản phẩm mỗi hàng) -->
+<androidx.recyclerview.widget.RecyclerView
+android:id="@+id/recyclerViewProducts"
+android:layout_width="match_parent"
+android:layout_height="0dp"
+android:layout_weight="1"
+android:paddingTop="10dp"
+android:layout_marginBottom="10dp" />
+
+    <!-- Footer -->
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:gravity="center"
+android:paddingTop="20dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Address: 123 FPT St, HCM City"
+    android:textSize="14sp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Phone: 0123-456-789"
+    android:textSize="14sp" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Email: contact@shop.com"
+    android:textSize="14sp" />
+</LinearLayout>
+
+    </LinearLayout>
