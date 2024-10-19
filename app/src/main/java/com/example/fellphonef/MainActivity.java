@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });
+
+        Button cartButton = findViewById(R.id.button_cart);
+        cartButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ActivityCart.class);
+            startActivity(intent);
+        });
     }
 
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Search Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4691D7"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Replace with your search icon -->
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="Tìm Kiếm Sản Phẩm"
+            android:paddingStart="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/search" />
+    </LinearLayout>
+
+    <!-- List of Products -->
+
+    <ListView
+        android:id="@+id/cart_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Footer with Total and Checkout Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#E0E0E0">
+
+        <CheckBox
+            android:id="@+id/select_all_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn tất cả" />
+
+        <TextView
+            android:id="@+id/total_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng cộng: "
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/total_amount_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 vnd" /> <!-- Initialize total amount here -->
+
+        <Button
+            android:id="@+id/checkout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4691D7"
+            android:text="Thanh Toán"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</LinearLayout>
