@@ -3,12 +3,14 @@ package com.example.fellphonef;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+public class MainActivity extends AppCompatActivity{
 
     private RecyclerView recyclerViewProducts;
     private ProductAdapter productAdapter;
