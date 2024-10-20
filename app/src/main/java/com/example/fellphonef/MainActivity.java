@@ -4,19 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +44,7 @@ public class MainActivity extends AppCompatActivity{
             startActivity(intent);
         });
 
+        // Nút chuyển gg map
         ImageButton locationButton = findViewById(R.id.btnlocation);
         locationButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FragmentContainerActivity.class);
