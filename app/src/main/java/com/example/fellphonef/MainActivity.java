@@ -3,18 +3,17 @@ package com.example.fellphonef;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewProducts;
     private ProductAdapter productAdapter;
     private List<Product> productList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ActivityCart.class);
             startActivity(intent);
         });
-    }
 
+        // Nút chuyển gg map
+        ImageButton locationButton = findViewById(R.id.btnlocation);
+        locationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FragmentContainerActivity.class);
+            startActivity(intent);
+        });
+    }
 }
