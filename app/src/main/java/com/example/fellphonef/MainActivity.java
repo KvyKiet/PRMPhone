@@ -2,13 +2,19 @@ package com.example.fellphonef;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.fellphonef.api.ApiService;
+import com.example.fellphonef.api.RetrofitInstance;
 import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -21,6 +27,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fetchProducts();
 
         // Khởi tạo danh sách sản phẩm
         productList = new ArrayList<>();
@@ -49,6 +56,29 @@ public class MainActivity extends AppCompatActivity{
         locationButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FragmentContainerActivity.class);
             startActivity(intent);
+        });
+    }
+
+
+    //test api
+    private void fetchProducts() {
+        ApiService apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
+        Call<List<Product>> call = apiService.getAllProducts();
+
+        call.enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Product> productList = response.body();
+                    productAdapter = new ProductAdapter(productList);
+                    recyclerViewProducts.setAdapter(productAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+            }
         });
     }
 }
