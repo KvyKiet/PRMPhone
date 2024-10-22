@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText usernameInput;
-    private EditText passwordInput;
+    private EditText usernameInput, passwordInput;
     private Button loginButton;
     private TextView linkRegister;
-    private ImageView logo; // Declare the logo ImageView
+    private ImageView logo;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +26,12 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         loginButton = findViewById(R.id.button_login);
-        linkRegister = findViewById(R.id.link_register); // Make sure the ID matches the XML
-        logo = findViewById(R.id.logo); // Initialize the logo ImageView
+        linkRegister = findViewById(R.id.link_register);
+        logo = findViewById(R.id.logo);
 
-        // Handle logo click to go to the homepage
-        logo.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Assuming MainActivity is your homepage
-            startActivity(intent);
-            finish(); // Optional: close the current login activity
-        });
+        // Initialize database helper
+        dbHelper = new DBHelper(this);
 
-        // Handle login button click
         loginButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
@@ -44,15 +39,23 @@ public class LoginActivity extends AppCompatActivity {
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Please enter both fields", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                // Navigate to the main activity after login
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                boolean isValid = dbHelper.checkUserCredentials(username, password);
+                if (isValid) {
+                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    if (username.equals("admin")){
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();}
+                } else {
+                    Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        // Handle "Sign up here" click
         linkRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);

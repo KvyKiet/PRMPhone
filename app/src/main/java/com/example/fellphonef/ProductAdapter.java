@@ -16,10 +16,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private List<Product> productList;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
-    public ProductAdapter(List<Product> productList) {
+    // Constructor
+    public ProductAdapter(List<Product> productList, Context context) {
         this.productList = productList;
         this.context = context;
+    }
+
+    // Interface for item click listener
+    public interface OnItemClickListener {
+        void onItemClick(Product product);
+    }
+
+    // Method to set the click listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -36,20 +48,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productName.setText(product.getName());
         holder.productPrice.setText("$" + product.getPrice());
         // Đặt hình ảnh cho sản phẩm
-        holder.productImage.setImageResource(R.drawable.default_product_image); // Thay thế với URL hoặc bitmap nếu cần
+        holder.productImage.setImageResource(R.drawable.default_product_image); // Replace with actual image logic if needed
 
-        // Xử lý sự kiện click trên itemView để mở chi tiết sản phẩm
+        // Handle item click to notify the listener
         holder.itemView.setOnClickListener(v -> {
-            // Mở activity chi tiết sản phẩm (nếu cần)
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(product);
+            }
         });
     }
-
 
     @Override
     public int getItemCount() {
         return productList.size();
     }
 
+    // ViewHolder class
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView productImage;
         TextView productName;

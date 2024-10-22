@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FellPhoneF"
         tools:targetApi="31">
-
+        <activity
+            android:name=".FragmentContainerActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -29,7 +31,7 @@
             android:value="AIzaSyAB7FfwEzPNF-VL5DvoYapMkMLrEbxiO5U" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:exported = "true"/>
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
@@ -44,6 +46,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ActivityCart" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".AddProductActivity" />
+        <activity android:name=".EditProductActivity" />
     </application>
 
 </manifest>

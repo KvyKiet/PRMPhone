@@ -16,6 +16,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button buttonRegister;
     private TextView textViewLoginLink;
     private ImageView logo;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
         textViewLoginLink = findViewById(R.id.textViewLoginLink);
         logo = findViewById(R.id.logo);
 
-        // Handle logo click to return to homepage
-        logo.setOnClickListener(v -> {
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        // Initialize database helper
+        dbHelper = new DBHelper(this);
 
-        // Handle register button click
         buttonRegister.setOnClickListener(v -> {
             String username = editTextUsername.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
@@ -53,15 +49,22 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // Perform registration logic here (e.g., saving user info)
-
-            // After successful registration, redirect to homepage
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            if (dbHelper.checkUsername(username)) {
+                Toast.makeText(RegisterActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean isInserted = dbHelper.insertUser(username, password);
+                if (isInserted) {
+                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    // Navigate to the main activity
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
-        // Handle "Log in" link click to go back to login page
         textViewLoginLink.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
