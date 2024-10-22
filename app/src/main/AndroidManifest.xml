@@ -49,6 +49,7 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".AddProductActivity" />
         <activity android:name=".EditProductActivity" />
+        <activity android:name=".ProductDetailActivity" />
     </application>
 
 </manifest>

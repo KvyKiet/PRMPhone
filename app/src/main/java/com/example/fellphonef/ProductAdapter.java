@@ -1,6 +1,7 @@
 package com.example.fellphonef;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         // Handle item click to notify the listener
         holder.itemView.setOnClickListener(v -> {
             if (onItemClickListener != null) {
+                // If the listener is set, notify the listener
                 onItemClickListener.onItemClick(product);
+
+                // Move to the detail page
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra("id", product.getId());
+                intent.putExtra("name", product.getName());
+                intent.putExtra("price", product.getPrice());
+                intent.putExtra("details", product.getDetails());
+                intent.putExtra("imageResId", product.getImageResId());
+                context.startActivity(intent);
             }
         });
     }

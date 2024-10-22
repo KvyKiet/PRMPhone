@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         // Retrieve products from SQLite
+        dbHelper.clearProducts();
+        dbHelper.seedProducts();
         productList = dbHelper.getAllProducts();
 
         // Initialize RecyclerView
@@ -34,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Adapter and set it to the RecyclerView
         productAdapter = new ProductAdapter(productList, this);
+        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+                Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
+                intent.putExtra("name", product.getName());
+                intent.putExtra("price", product.getPrice());
+                intent.putExtra("details", product.getDetails());
+                intent.putExtra("imageResId", product.getImageResId());
+                startActivity(intent);
+            }
+        });
         recyclerViewProducts.setAdapter(productAdapter);
 
         // Login button functionality
@@ -55,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Refresh the product list when returning to the activity
-        dbHelper.seedProducts();
+//        dbHelper.clearProducts();
+//        dbHelper.seedProducts();
         productList.clear();
         productList.addAll(dbHelper.getAllProducts());
         productAdapter.notifyDataSetChanged();
