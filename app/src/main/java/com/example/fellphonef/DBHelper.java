@@ -42,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String ID = "id";
 
     public DBHelper(Context context) {
+        //context.deleteDatabase(DATABASE_NAME);
         super(context, DATABASE_NAME, null, 1);
     }
 
