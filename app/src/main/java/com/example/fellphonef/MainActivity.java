@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // Refresh the product list when returning to the activity
+        dbHelper.seedProducts();
         productList.clear();
         productList.addAll(dbHelper.getAllProducts());
         productAdapter.notifyDataSetChanged();

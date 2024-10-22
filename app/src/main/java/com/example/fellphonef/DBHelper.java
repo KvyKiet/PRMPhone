@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -134,5 +135,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return products;
+    }
+
+    //Seed products
+    public void seedProducts() {
+        List<Product> initProducts = Arrays.asList(
+                new Product("iPhone 13 Pro Max", 2000.00, "The iPhone 13 Pro Max features a 6.7-inch Super Retina XDR display, A15 Bionic chip, and a powerful triple-camera system with LiDAR. It also offers 5G connectivity and all-day battery life, making it one of the most advanced smartphones on the market.", R.drawable.product_image1),
+                new Product("Samsung Galaxy S21 Ultra", 1800.00, "With a 6.8-inch Dynamic AMOLED display, the Galaxy S21 Ultra offers stunning visuals. Powered by the Exynos 2100/Snapdragon 888, it boasts a quad-camera system with 100x Space Zoom and 5G support.", R.drawable.product_image1),
+                new Product("Google Pixel 6 Pro", 1200.00, "The Google Pixel 6 Pro features a 6.71-inch LTPO OLED display and is powered by Google’s custom Tensor chip. It offers an enhanced camera system with computational photography, excellent software integration, and long-lasting battery life.", R.drawable.product_image1),
+                new Product("OnePlus 9 Pro", 1050.00, "The OnePlus 9 Pro boasts a 6.7-inch Fluid AMOLED display and is powered by the Snapdragon 888 processor. With a Hasselblad-powered quad-camera system, 5G connectivity, and Warp Charge 65T, it's built for speed and performance.", R.drawable.product_image1),
+                new Product("Xiaomi Mi 11 Ultra", 1400.00, "The Xiaomi Mi 11 Ultra features a 6.81-inch AMOLED display and Snapdragon 888 chipset. Its standout feature is a 50 MP triple-camera system with a unique rear display for enhanced selfies and notifications.", R.drawable.product_image1),
+                new Product("Vivo X70 Pro+", 1350.00, "The Vivo X70 Pro+ features a 6.78-inch AMOLED display and is powered by the Snapdragon 888+. Its camera system is co-engineered with Zeiss optics, offering professional-level photography and videography features.", R.drawable.product_image1),
+                new Product("Oppo Find X3 Pro", 1100.00, "The Oppo Find X3 Pro offers a 6.7-inch AMOLED display, Snapdragon 888 chipset, and a 50 MP quad-camera system. Its standout feature is a billion-color display, which makes for an incredible visual experience.", R.drawable.product_image1),
+                new Product("Asus ROG Phone 5", 1500.00, "Designed for gamers, the Asus ROG Phone 5 boasts a 6.78-inch AMOLED display with a 144Hz refresh rate. Powered by the Snapdragon 888, it comes with a massive 6000mAh battery and enhanced cooling systems for extended gaming sessions.", R.drawable.product_image1),
+                new Product("Huawei P50 Pro", 1250.00, "The Huawei P50 Pro offers a 6.6-inch OLED display and a powerful Kirin 9000 chipset. It shines in photography with its 50 MP quad-camera system, providing amazing clarity and details in low-light conditions.", R.drawable.product_image1),
+                new Product("Sony Xperia 1 III", 1300.00, "Featuring a 6.5-inch 4K OLED display and a triple-camera setup with Zeiss optics, the Xperia 1 III excels in multimedia, offering enhanced gaming, professional-grade photography, and cinema-quality video.", R.drawable.product_image1)
+        );
+        for (Product product : initProducts) {
+            insertProduct(product.getName(), product.getPrice(), product.getDetails(), product.getImageResId());
+        }
     }
 }
