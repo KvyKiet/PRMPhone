@@ -9,19 +9,23 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityCart extends AppCompatActivity {
 
     private ListView listView;
     private CartAdapter cartAdapter;
-    private ArrayList<CartItem> cartItems;
+    private List<CartItem> cartItems;
     private TextView totalTextView;
     private CheckBox selectAllCheckbox;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        dbHelper = new DBHelper(this);
 
         listView = findViewById(R.id.cart_list_view);
         totalTextView = findViewById(R.id.total_text_view);
@@ -29,9 +33,9 @@ public class ActivityCart extends AppCompatActivity {
         Button checkoutButton = findViewById(R.id.checkout_button);
 
         // Initialize cart items (You might get this data from a previous activity)
-        cartItems = new ArrayList<>();
-        cartItems.add(new CartItem(new Product("Product 1", 100, "Details", R.drawable.product_image1), 1));
-        cartItems.add(new CartItem(new Product("Product 2", 200, "Details", R.drawable.default_product_image), 2));
+        cartItems = dbHelper.getAllProductInCart();
+//        cartItems.add(new CartItem(new Product("Product 1", 100, "Details", R.drawable.product_image1), 1));
+//        cartItems.add(new CartItem(new Product("Product 2", 200, "Details", R.drawable.default_product_image), 2));
 
         cartAdapter = new CartAdapter(this, cartItems);
         listView.setAdapter(cartAdapter);

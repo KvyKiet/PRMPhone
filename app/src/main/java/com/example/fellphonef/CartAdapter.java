@@ -31,12 +31,14 @@ public class CartAdapter extends ArrayAdapter<CartItem> {
         ImageView productImage = convertView.findViewById(R.id.product_image);
         TextView productName = convertView.findViewById(R.id.product_name);
         TextView productPrice = convertView.findViewById(R.id.product_price);
+        TextView productQuantity = convertView.findViewById(R.id.product_quantity);
         CheckBox checkBox = convertView.findViewById(R.id.checkbox);
 
         // Populate the data into the template view using the data object
         productImage.setImageResource(cartItem.getProduct().getImageResId());
         productName.setText(cartItem.getProduct().getName());
         productPrice.setText(String.format("%.2f vnd", cartItem.getProduct().getPrice()));
+        productQuantity.setText(String.valueOf(cartItem.getQuantity()));
         checkBox.setChecked(cartItem.getProduct().isSelected());
 
         // Checkbox listener to update selection status
